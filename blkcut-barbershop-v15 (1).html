@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLKCUT — Premium Barbershop Tauranga</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,700;1,9..144,800&family=Jost:wght@300;400;500;600&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#f2ede4;--bg-warm:#e9e2d5;--bg-mid:#dfd7c8;
+  --ink:#161210;--ink-2:#382e24;--ink-3:#6b5e50;--ink-4:#a0917f;
+  --rule:#cdc3b2;--white:#faf6ef;
+  --navy:#0b1a52;--navy-2:#152070;
+  --red:#b81818;--red-2:#d42020;
+  --font-h:'Fraunces',serif;--font-b:'Jost',sans-serif;--font-m:'DM Mono',monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+html{scroll-behavior:smooth;font-size:15px}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-weight:300;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+button{cursor:pointer;border:none;background:none;font-family:inherit}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--navy)}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;align-items:center;justify-content:space-between;padding:1.2rem 3.5rem;background:rgba(242,237,228,.92);border-bottom:1px solid var(--rule);backdrop-filter:blur(16px);transition:all .5s var(--ease)}
+nav.scrolled{background:rgba(242,237,228,.98);border-bottom:1px solid var(--rule);backdrop-filter:blur(20px);padding:.9rem 3.5rem;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.nav-logo{font-family:var(--font-h);font-weight:900;font-size:1.3rem;letter-spacing:.02em;color:var(--ink)}
+.nav-logo span{color:var(--red)}
+.nav-center{display:flex;gap:2rem}
+.nav-center a{font-family:var(--font-m);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:600;transition:color .2s;position:relative}
+.nav-center a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:2px;background:var(--red);transition:width .3s var(--ease)}
+.nav-center a:hover{color:var(--red)}
+.nav-center a:hover::after{width:100%}
+.nav-right{display:flex;align-items:center;gap:1rem}
+.nav-phone{font-family:var(--font-m);font-size:.58rem;letter-spacing:.12em;color:var(--ink-3)}
+.btn-nav{font-family:var(--font-h);font-weight:700;font-size:.68rem;letter-spacing:.06em;padding:.55rem 1.4rem;background:var(--red);color:var(--white);border-radius:3px;transition:all .25s}
+.btn-nav:hover{background:var(--red-2);transform:translateY(-1px)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:52% 48%}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:8rem 3.5rem 4.5rem;border-right:1px solid var(--rule);position:relative}
+.hero-tag{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--rule);background:rgba(255,255,255,.4);padding:.4rem .9rem;border-radius:3px;margin-bottom:2rem;width:fit-content}
+.hero-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero-tag-text{font-family:var(--font-m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.hero-h1{font-family:var(--font-h);font-weight:900;font-size:clamp(3rem,5.5vw,5.8rem);line-height:.95;letter-spacing:-.03em;color:var(--ink);margin-bottom:1.5rem}
+.hero-h1 .navy{color:var(--navy)}
+.hero-h1 .red-i{color:var(--red);font-style:italic}
+.hero-sub{font-size:.95rem;line-height:1.82;color:var(--ink-2);max-width:380px;margin-bottom:2.5rem;font-weight:300}
+.hero-ctas{display:flex;align-items:center;gap:1rem;margin-bottom:3rem}
+.btn-primary{font-family:var(--font-h);font-weight:700;font-size:.74rem;letter-spacing:.06em;padding:.9rem 2.2rem;background:var(--red);color:var(--white);border-radius:3px;display:inline-block;transition:all .25s;box-shadow:0 4px 18px rgba(184,24,24,.22)}
+.btn-primary:hover{background:var(--red-2);transform:translateY(-2px);box-shadow:0 8px 26px rgba(184,24,24,.32)}
+.btn-secondary{font-family:var(--font-h);font-weight:600;font-size:.74rem;letter-spacing:.06em;padding:.9rem 1.8rem;border:1px solid var(--rule);color:var(--ink-2);border-radius:3px;background:rgba(255,255,255,.5);display:inline-block;transition:all .25s}
+.btn-secondary:hover{border-color:var(--navy);color:var(--navy);background:rgba(255,255,255,.9)}
+.hero-trust{display:flex;align-items:center;gap:1.2rem;padding-top:1.8rem;border-top:1px solid var(--rule)}
+.trust-avatars{display:flex}
+.trust-avatars span{width:28px;height:28px;border-radius:50%;border:2px solid var(--bg);margin-left:-7px;overflow:hidden;display:block}
+.trust-avatars span:first-child{margin-left:0}
+.trust-avatars img{width:100%;height:100%;object-fit:cover}
+.trust-text{font-size:.78rem;color:var(--ink-3);line-height:1.5}
+.trust-text strong{font-family:var(--font-h);font-weight:700;color:var(--ink);font-size:.84rem}
+.hero-right{position:relative;overflow:hidden;background:var(--navy);border-left:none}
+.hero-right-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(8%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,26,82,.25) 0%,rgba(10,8,5,.7) 100%)}
+.hero-stats{position:absolute;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1);background:rgba(8,6,4,.3);backdrop-filter:blur(6px)}
+.hs-item{padding:1.5rem 1.4rem;border-right:1px solid rgba(255,255,255,.08);text-align:center}
+.hs-item:last-child{border-right:none}
+.hs-n{font-family:var(--font-h);font-weight:800;font-size:1.8rem;color:#fff;line-height:1}
+.hs-l{font-family:var(--font-m);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:.3rem}
+
+/* TICKER */
+.ticker{background:var(--navy);overflow:hidden;padding:.75rem 0}
+.ticker-track{display:flex;animation:tick 26s linear infinite;white-space:nowrap}
+.ticker-item{font-family:var(--font-h);font-style:italic;font-size:.88rem;color:rgba(255,255,255,.5);padding:0 2.2rem;flex-shrink:0;display:flex;align-items:center;gap:2.2rem}
+.ticker-item::after{content:'✦';font-style:normal;font-size:.42rem;color:var(--red);opacity:.8}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* TRUST BAR */
+#trust{padding:2.5rem 3.5rem;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:2rem}
+.trust-label{font-family:var(--font-m);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-4);flex-shrink:0;max-width:80px;line-height:1.6}
+.trust-divider{width:1px;height:1.8rem;background:var(--rule);flex-shrink:0}
+.trust-logos{display:flex;align-items:center;gap:2.5rem;flex:1}
+.trust-logo{font-family:var(--font-h);font-weight:700;font-size:.75rem;letter-spacing:.06em;color:var(--ink-4);opacity:.5;transition:opacity .2s;white-space:nowrap}
+.trust-logo:hover{opacity:.85}
+.trust-stars-wrap{margin-left:auto;display:flex;align-items:center;gap:.7rem;flex-shrink:0}
+.trust-stars{color:var(--red);font-size:.85rem;letter-spacing:.05em}
+.trust-rating-text{font-family:var(--font-m);font-size:.54rem;letter-spacing:.12em;color:var(--ink-3);line-height:1.6}
+
+/* SHARED */
+.eyebrow{font-family:var(--font-m);font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--red);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.eyebrow::before{content:'';width:1.4rem;height:1px;background:var(--red);opacity:.5;flex-shrink:0}
+.section-h{font-family:var(--font-h);font-weight:800;font-size:clamp(2.2rem,3.8vw,4rem);line-height:1;letter-spacing:-.03em;color:var(--ink);margin-bottom:1.8rem}
+.section-h em{font-style:italic;color:var(--navy)}
+.section-h .red{color:var(--red)}
+
+/* ABOUT */
+#sobre{padding:0;display:grid;grid-template-columns:1fr 1fr;align-items:stretch;border-bottom:1px solid var(--rule);overflow:hidden}
+.sobre-left-pad{padding:7rem 3.5rem}.sobre-p{font-size:.9rem;color:var(--ink-2);line-height:1.88;margin-bottom:1.1rem}
+.sobre-quote{margin:2rem 0;padding:1.6rem 1.8rem;background:var(--white);border-left:3px solid var(--red);box-shadow:0 2px 20px rgba(0,0,0,.05)}
+.sobre-quote p{font-family:var(--font-h);font-style:italic;font-size:1.1rem;color:var(--ink);line-height:1.6}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--rule);overflow:hidden;margin-top:2rem}
+.stat-c{padding:1.5rem 1.2rem;text-align:center;border-right:1px solid var(--rule);background:var(--white)}
+.stat-c:last-child{border-right:none}
+.stat-n{font-family:var(--font-h);font-weight:800;font-size:2.4rem;line-height:1;color:var(--ink)}
+.stat-n sup{font-size:1.1rem;color:var(--red)}
+.stat-l{font-family:var(--font-m);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-4);margin-top:.45rem}
+.sobre-img-w{position:relative;overflow:hidden}
+.sobre-img{width:100%;height:100%;aspect-ratio:unset;object-fit:cover;display:block;border-radius:0;box-shadow:none;filter:grayscale(8%) contrast(1.04);min-height:500px}
+.sobre-badge{position:absolute;bottom:2rem;left:-1.5rem;background:var(--navy);padding:1rem 1.4rem;border-radius:2px;box-shadow:0 8px 28px rgba(11,26,82,.3)}
+.sobre-badge-t{font-family:var(--font-m);font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+
+/* FEATURES */
+#features{padding:7rem 3.5rem;background:var(--bg-warm);border-bottom:1px solid var(--rule)}
+.feat-header{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:end;margin-bottom:3.5rem}
+.feat-note{font-size:.88rem;color:var(--ink-3);line-height:1.82}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);border:1px solid var(--rule);overflow:hidden}
+.feat-card{background:var(--white);padding:2.2rem 2rem;transition:background .3s;position:relative;overflow:hidden}
+.feat-card:hover{background:var(--bg)}
+.feat-card:hover .feat-icon{background:var(--navy);border-color:var(--navy);color:#fff}
+.feat-icon{width:36px;height:36px;background:var(--bg-warm);border:1px solid var(--rule);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;margin-bottom:1.3rem;transition:all .3s}
+.feat-title{font-family:var(--font-h);font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:.55rem;letter-spacing:-.01em}
+.feat-desc{font-size:.8rem;color:var(--ink-3);line-height:1.72}
+
+/* HOW */
+#how{padding:0;border-bottom:1px solid var(--rule);overflow:hidden}
+.how-inner{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:520px}
+.how-steps{display:flex;flex-direction:column}
+.how-step{display:flex;gap:1.8rem;padding:1.7rem 0;border-bottom:1px solid var(--rule);transition:background .2s}
+.how-step:first-child{border-top:1px solid var(--rule)}
+.how-step:hover .how-num{color:var(--navy)}
+.how-num{font-family:var(--font-h);font-weight:800;font-size:2.2rem;color:var(--rule);line-height:1;flex-shrink:0;width:2.2rem;transition:color .3s}
+.how-step-title{font-family:var(--font-h);font-weight:700;font-size:1rem;color:var(--ink);margin-bottom:.35rem}
+.how-step-desc{font-size:.8rem;color:var(--ink-3);line-height:1.72}
+.how-visual{position:relative;overflow:hidden;min-height:520px}
+.how-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:0;display:block;box-shadow:none;filter:grayscale(8%) contrast(1.04)}
+.how-badge{position:absolute;top:1.8rem;right:-1.8rem;background:var(--red);padding:1.2rem 1.5rem;border-radius:2px;text-align:center;box-shadow:0 8px 28px rgba(184,24,24,.28)}
+.how-badge-n{font-family:var(--font-h);font-weight:800;font-size:1.8rem;color:#fff;line-height:1}
+.how-badge-l{font-family:var(--font-m);font-size:.48rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.28rem}
+
+/* TEAM */
+#team{padding:7rem 3.5rem;background:var(--bg-warm);border-bottom:1px solid var(--rule)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:2rem;border-top:1px solid var(--rule)}
+.barber-card{background:var(--white);border:none;border-right:1px solid var(--rule);overflow:hidden;transition:box-shadow .3s}
+.barber-card:hover{box-shadow:0 8px 30px rgba(11,26,82,.08);transform:translateY(-2px)}
+.barber-img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:center 15%;filter:grayscale(10%) contrast(1.03)}
+.barber-info{padding:.9rem 1rem 1rem}
+.barber-name{font-family:var(--font-h);font-weight:700;font-size:.95rem;color:var(--ink);margin-bottom:.1rem}
+.barber-role{font-family:var(--font-m);font-size:.52rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:.5rem}
+.barber-spec{font-size:.74rem;color:var(--ink-3);line-height:1.5;margin-bottom:.5rem}
+.barber-avail{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
+.barber-avail span{color:var(--ink-2)}
+.barber-avail .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#2d8a3e;margin-right:4px}
+
+/* INSTAGRAM BUTTONS */
+.ig-btn{display:inline-flex;align-items:center;gap:.5rem;margin-top:.9rem;font-family:var(--font-b);font-size:.68rem;font-weight:400;color:#fff;padding:.42rem .85rem .42rem .48rem;border-radius:50px;text-decoration:none;position:relative;overflow:hidden;isolation:isolate;transition:transform .3s var(--ease),box-shadow .3s var(--ease),opacity .3s;box-shadow:0 2px 10px rgba(131,58,180,.2);opacity:.88}
+.ig-btn:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(131,58,180,.35);opacity:1}
+.ig-btn-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 120%,#ffdc80 0%,#f77737 25%,#fd1d1d 50%,#c13584 75%,#833ab4 100%);opacity:.9;transition:opacity .35s}
+.ig-btn-bg2{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 70% -20%,#ffdc80 0%,#f77737 25%,#fd1d1d 50%,#c13584 75%,#833ab4 100%);opacity:0;transition:opacity .4s}
+.ig-btn:hover .ig-btn-bg2{opacity:.9}
+.ig-btn-icon{position:relative;z-index:1;width:20px;height:20px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ig-btn-icon svg{width:11px;height:11px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+.ig-btn-label{position:relative;z-index:1;display:flex;flex-direction:column;gap:1px}
+.ig-btn-top{font-size:.42rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:1}
+.ig-btn-handle{font-size:.65rem;font-weight:500;line-height:1}
+
+/* SERVICES */
+#servicos{padding:7rem 3.5rem;border-bottom:1px solid var(--rule)}
+.srv-header{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:end;padding-bottom:2.5rem;border-bottom:1px solid var(--rule)}
+.srv-note{font-size:.86rem;color:var(--ink-3);line-height:1.82}
+.srow{display:grid;border-bottom:1px solid var(--rule)}
+.srow:last-child{border-bottom:none}
+.srow-a{grid-template-columns:2fr 1fr}
+.srow-b{grid-template-columns:repeat(3,1fr)}
+.scard{padding:2.4rem 2.2rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;background:var(--white);transition:background .3s;position:relative;overflow:hidden}
+.scard:last-child{border-right:none}
+.scard:hover{background:var(--bg);border-left:3px solid var(--navy);padding-left:calc(2.2rem - 2px)}
+.scard-navy{background:var(--navy)!important}
+.scard-navy:hover{background:var(--navy-2)!important;border-left:3px solid var(--red)!important}
+.scard-navy .sc-num{color:rgba(255,255,255,.15)}
+.scard-navy .sc-name{color:#fff}
+.scard-navy .sc-sub{color:rgba(255,255,255,.4)}
+.scard-navy .sc-desc{color:rgba(255,255,255,.55)}
+.scard-navy .sc-pill{border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.35)}
+.scard-navy .sc-footer{border-top-color:rgba(255,255,255,.08)}
+.scard-navy .sc-dur{color:rgba(255,255,255,.3)}
+.scard-navy .sc-price{color:#fff}
+.scard-pop{display:inline-flex;align-items:center;gap:.35rem;font-family:var(--font-m);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--red);color:var(--red);padding:.2rem .6rem;margin-bottom:1.2rem;width:fit-content}
+.sc-num{font-family:var(--font-m);font-size:.54rem;letter-spacing:.2em;color:var(--ink-4);margin-bottom:1rem}
+.sc-name{font-family:var(--font-h);font-weight:800;font-size:1.35rem;line-height:1.05;color:var(--ink);margin-bottom:.2rem;letter-spacing:-.02em}
+.sc-sub{font-family:var(--font-h);font-style:italic;font-size:.86rem;color:var(--ink-3);margin-bottom:.9rem}
+.sc-desc{font-size:.78rem;color:var(--ink-3);line-height:1.72;margin-bottom:1.2rem;flex:1}
+.sc-pills{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1.3rem}
+.sc-pill{font-family:var(--font-m);font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--rule);padding:.2rem .5rem;color:var(--ink-4)}
+.sc-footer{display:flex;align-items:baseline;justify-content:space-between;padding-top:1.2rem;border-top:1px solid var(--rule);margin-top:auto}
+.sc-dur{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;color:var(--ink-4)}
+.sc-price{font-family:var(--font-h);font-weight:800;font-size:1.8rem;color:var(--ink);line-height:1;letter-spacing:-.02em}
+
+/* REVIEWS */
+#reviews{padding:7rem 3.5rem;background:var(--bg-warm);border-bottom:1px solid var(--rule)}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem;margin-top:3rem}
+.rv-card{background:var(--white);border:none;border-top:2px solid var(--rule);padding:2rem;transition:all .3s}
+.rv-card:hover{box-shadow:0 8px 40px rgba(11,26,82,.08);transform:translateY(-3px);border-top-color:var(--red)}
+.rv-stars{color:var(--red);font-size:.8rem;letter-spacing:.08em;margin-bottom:1rem}
+.rv-text{font-family:var(--font-h);font-style:italic;font-size:.88rem;color:var(--ink-2);line-height:1.78;margin-bottom:1.6rem}
+.rv-author{display:flex;align-items:center;gap:.8rem}
+.rv-avatar{width:36px;height:36px;border-radius:50%;overflow:hidden;flex-shrink:0;background:var(--bg-mid);display:flex;align-items:center;justify-content:center;font-family:var(--font-h);font-weight:700;font-size:.85rem;color:var(--navy)}
+.rv-name{font-family:var(--font-h);font-weight:700;font-size:.84rem;color:var(--ink)}
+.rv-service{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);margin-top:.2rem}
+
+/* FAQ */
+#faq{padding:7rem 3.5rem;border-bottom:1px solid var(--rule)}
+.faq-inner{display:grid;grid-template-columns:1fr 1.5fr;gap:6rem;align-items:start}
+.faq-list{display:flex;flex-direction:column}
+.faq-item{border-bottom:1px solid var(--rule)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:1.4rem 0;cursor:pointer;font-family:var(--font-h);font-weight:600;font-size:.9rem;color:var(--ink);gap:.9rem;user-select:none;transition:color .2s}
+.faq-q:hover{color:var(--navy)}
+.faq-icon{width:20px;height:20px;flex-shrink:0;border:1px solid var(--rule);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--ink-3);transition:all .3s}
+.faq-item.open .faq-icon{background:var(--navy);border-color:var(--navy);color:#fff;transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease),padding .3s;font-size:.82rem;color:var(--ink-3);line-height:1.82;padding:0}
+.faq-item.open .faq-a{max-height:250px;padding-bottom:1.3rem}
+
+/* BOOKING */
+#reservas{padding:7rem 3.5rem;background:var(--navy);position:relative;overflow:hidden}
+#reservas::before{content:'BOOK';position:absolute;right:-3rem;top:50%;transform:translateY(-50%);font-family:var(--font-h);font-weight:900;font-size:16rem;color:rgba(255,255,255,.025);pointer-events:none;line-height:1;letter-spacing:-.05em}
+.res-inner{display:grid;grid-template-columns:1fr 1fr;gap:5.5rem;align-items:start;position:relative;z-index:1}
+.res-ey{font-family:var(--font-m);font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(255,255,255,.3);display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem}
+.res-ey::before{content:'';width:1.4rem;height:1px;background:rgba(255,255,255,.2)}
+.res-h{font-family:var(--font-h);font-weight:800;font-size:clamp(2.3rem,3.5vw,3.8rem);line-height:1;letter-spacing:-.03em;color:#fff;margin-bottom:1.3rem}
+.res-h em{font-style:italic;color:#e87070}
+.res-p{font-size:.86rem;color:rgba(255,255,255,.5);line-height:1.82;margin-bottom:2.3rem}
+.res-info{display:flex;flex-direction:column}
+.res-row{display:flex;align-items:flex-start;gap:1rem;padding:1.1rem 0;border-bottom:1px solid rgba(255,255,255,.07)}
+.res-row:first-child{border-top:1px solid rgba(255,255,255,.07)}
+.res-row-icon{width:30px;height:30px;flex-shrink:0;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:.85rem}
+.res-label{font-family:var(--font-m);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:.22rem}
+.res-val{font-size:.84rem;color:rgba(255,255,255,.65)}
+.booking-wizard{background:var(--white);padding:2.6rem;border-radius:0;box-shadow:0 12px 40px rgba(0,0,0,.15);border-top:2px solid var(--red)}
+.wiz-title{font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.35rem;letter-spacing:-.02em}
+.wiz-sub{font-size:.78rem;color:var(--ink-3);line-height:1.6;margin-bottom:2rem}
+.step-bar{display:flex;align-items:center;gap:0;margin-bottom:2.2rem;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.step-bar::-webkit-scrollbar{display:none}
+.step-item{display:flex;align-items:center;gap:.45rem;font-family:var(--font-m);font-size:.52rem;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-4);flex-shrink:0}
+.step-item.active{color:var(--navy)}
+.step-item.done{color:var(--red)}
+.step-dot{width:18px;height:18px;border-radius:50%;border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:.58rem;flex-shrink:0;transition:all .3s}
+.step-item.active .step-dot{background:var(--navy);border-color:var(--navy);color:#fff}
+.step-item.done .step-dot{background:var(--red);border-color:var(--red);color:#fff}
+.step-line{flex:1;height:1px;background:var(--rule);max-width:1.8rem}
+.wiz-step{display:none}
+.wiz-step.active{display:block}
+.barber-picker{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.4rem}
+.barber-opt{border:1px solid var(--rule);padding:.95rem 1rem;cursor:pointer;transition:all .2s;background:var(--bg);position:relative}
+.barber-opt:hover{border-color:var(--navy)}
+.barber-opt.selected{border-color:var(--navy);background:rgba(11,26,82,.04)}
+.barber-opt.selected::after{content:'✓';position:absolute;top:.5rem;right:.65rem;font-size:.68rem;color:var(--navy);font-family:var(--font-m)}
+.bo-name{font-family:var(--font-h);font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:.14rem}
+.bo-spec{font-size:.7rem;color:var(--ink-3);margin-bottom:.38rem;line-height:1.4}
+.bo-avail{font-family:var(--font-m);font-size:.5rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4)}
+.bo-avail .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#2d8a3e;margin-right:4px}
+.slot-info{background:var(--bg-warm);border:1px solid var(--rule);padding:.9rem 1.1rem;margin-bottom:1rem;display:none}
+.slot-barber-chosen{font-family:var(--font-h);font-weight:700;font-size:.88rem;color:var(--ink);margin-bottom:.2rem}
+.slot-hint{font-size:.76rem;color:var(--ink-3)}
+.slot-info.visible{display:block}
+.fg{margin-bottom:.9rem;display:flex;flex-direction:column;gap:.38rem}
+.fg label{font-family:var(--font-m);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.fg input,.fg select{background:var(--bg);border:1px solid var(--rule);color:var(--ink);padding:.78rem .9rem;font-family:var(--font-b);font-size:.84rem;font-weight:300;outline:none;transition:border-color .2s,box-shadow .2s;width:100%;border-radius:2px;-webkit-appearance:none}
+.fg input::placeholder{color:var(--ink-4)}
+.fg input:focus,.fg select:focus{border-color:var(--navy);box-shadow:0 0 0 3px rgba(11,26,82,.07)}
+.fg select option{background:var(--white)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.time-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.45rem;margin-top:.45rem}
+.time-slot{border:1px solid var(--rule);padding:.55rem;text-align:center;font-family:var(--font-m);font-size:.58rem;letter-spacing:.1em;cursor:pointer;transition:all .2s;background:var(--bg)}
+.time-slot:hover{border-color:var(--navy)}
+.time-slot.selected{background:var(--navy);border-color:var(--navy);color:#fff}
+.time-slot.taken{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+.wiz-confirm{background:var(--bg-warm);border:1px solid var(--rule);padding:1.1rem 1.4rem;margin-bottom:1.1rem}
+.confirm-row{display:flex;justify-content:space-between;padding:.38rem 0;font-size:.78rem;border-bottom:1px solid var(--rule)}
+.confirm-row:last-child{border-bottom:none;font-family:var(--font-h);font-weight:700;color:var(--ink)}
+.confirm-label{color:var(--ink-3)}
+.wiz-btns{display:flex;gap:.75rem;margin-top:1.4rem}
+.btn-wiz-back{font-family:var(--font-h);font-weight:600;font-size:.68rem;letter-spacing:.06em;padding:.84rem 1.4rem;border:1px solid var(--rule);color:var(--ink-2);background:transparent;transition:all .2s;flex-shrink:0}
+.btn-wiz-back:hover{border-color:var(--ink)}
+.btn-wiz-next{font-family:var(--font-h);font-weight:700;font-size:.72rem;letter-spacing:.06em;padding:.84rem 1.8rem;background:var(--navy);color:var(--white);flex:1;transition:all .25s}
+.btn-wiz-next:hover{background:var(--navy-2)}
+.btn-wiz-book{font-family:var(--font-h);font-weight:700;font-size:.74rem;letter-spacing:.06em;padding:.95rem;background:var(--red);color:var(--white);width:100%;transition:all .25s;box-shadow:0 4px 18px rgba(184,24,24,.22)}
+.btn-wiz-book:hover{background:var(--red-2)}
+.email-note{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;text-align:center;color:var(--ink-4);margin-top:.65rem}
+.success-msg{text-align:center;padding:1.8rem 0;display:none}
+.success-msg.show{display:block}
+.success-icon{font-size:2.6rem;margin-bottom:.9rem}
+.success-h{font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:var(--ink);margin-bottom:.45rem}
+.success-p{font-size:.8rem;color:var(--ink-3);line-height:1.68}
+
+/* CTA FINAL */
+#cta-final{padding:8rem 3.5rem;background:var(--bg-mid);border-bottom:1px solid var(--rule);text-align:center;position:relative;overflow:hidden}
+#cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(11,26,82,.06) 0%,transparent 100%)}
+.cta-tag{display:inline-flex;align-items:center;gap:.55rem;border:1px solid var(--rule);background:var(--white);padding:.4rem 1.1rem;margin-bottom:1.8rem}
+.cta-tag-text{font-family:var(--font-m);font-size:.54rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-3)}
+.cta-h{font-family:var(--font-h);font-weight:800;font-size:clamp(2.5rem,4.8vw,4.8rem);line-height:1;letter-spacing:-.03em;color:var(--ink);margin-bottom:1.3rem;position:relative;z-index:1}
+.cta-h em{font-style:italic;color:var(--navy)}
+.cta-p{font-size:.95rem;color:var(--ink-3);line-height:1.78;max-width:460px;margin:0 auto 2.6rem;position:relative;z-index:1}
+.cta-actions{display:flex;align-items:center;justify-content:center;gap:1rem;position:relative;z-index:1}
+
+/* FOOTER */
+footer{background:var(--ink);padding:5rem 3.5rem 2.2rem;color:rgba(255,255,255,.4)}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:3.5rem;padding-bottom:3.5rem;border-bottom:1px solid rgba(255,255,255,.07)}
+.ft-logo{font-family:var(--font-h);font-weight:900;font-size:1.6rem;color:#fff;margin-bottom:.9rem;letter-spacing:.02em}
+.ft-logo span{color:var(--red)}
+.ft-tagline{font-size:.8rem;line-height:1.75;margin-bottom:1.8rem}
+.ft-ig-btn{display:inline-flex;align-items:center;gap:.6rem;font-family:var(--font-b);font-size:.75rem;font-weight:400;letter-spacing:.01em;padding:.5rem 1.1rem .5rem .65rem;border-radius:50px;color:#fff;text-decoration:none;position:relative;overflow:hidden;isolation:isolate;transition:transform .3s var(--ease),box-shadow .3s var(--ease),opacity .3s;box-shadow:0 2px 12px rgba(131,58,180,.2);opacity:.88}
+.ft-ig-btn:hover{transform:translateY(-1px);box-shadow:0 5px 20px rgba(131,58,180,.38);opacity:1}
+.ft-ig-btn-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 30% 120%,#ffdc80 0%,#f77737 25%,#fd1d1d 50%,#c13584 75%,#833ab4 100%);opacity:.9;transition:opacity .35s}
+.ft-ig-btn-bg2{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse at 70% -20%,#ffdc80 0%,#f77737 25%,#fd1d1d 50%,#c13584 75%,#833ab4 100%);opacity:0;transition:opacity .4s}
+.ft-ig-btn:hover .ft-ig-btn-bg2{opacity:.9}
+.ft-ig-btn-icon{position:relative;z-index:1;width:22px;height:22px;background:rgba(255,255,255,.15);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ft-ig-btn-icon svg{width:12px;height:12px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;position:relative;z-index:1}
+.ft-ig-btn-label{position:relative;z-index:1;display:flex;flex-direction:column;gap:1px}
+.ft-ig-btn-top{font-size:.44rem;letter-spacing:.14em;text-transform:uppercase;opacity:.7;line-height:1}
+.ft-ig-btn-handle{font-size:.72rem;font-weight:500;line-height:1}
+.ft-col-h{font-family:var(--font-m);font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:1.4rem}
+.ft-links{display:flex;flex-direction:column;gap:.75rem}
+.ft-links a{font-size:.8rem;transition:color .2s}
+.ft-links a:hover{color:rgba(255,255,255,.75)}
+.ft-bottom{padding-top:1.8rem;display:flex;justify-content:space-between;align-items:center}
+.ft-copy{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase}
+.ft-copy em{font-style:normal;color:var(--red)}
+.ft-bot{display:flex;gap:1.8rem}
+.ft-bot a{font-family:var(--font-m);font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.ft-bot a:hover{color:rgba(255,255,255,.6)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.rd1{transition-delay:.1s}.rd2{transition-delay:.2s}.rd3{transition-delay:.3s}.rd4{transition-delay:.4s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:translateY(0)}}
+.hu1{animation:fadeUp .9s var(--ease) .1s both}
+.hu2{animation:fadeUp .9s var(--ease) .25s both}
+.hu3{animation:fadeUp .9s var(--ease) .4s both}
+.hu4{animation:fadeUp .9s var(--ease) .55s both}
+.hu5{animation:fadeUp .9s var(--ease) .7s both}
+
+/* ════════════════════════════════
+   TABLET ≤1100px
+════════════════════════════════ */
+@media(max-width:1100px){
+  nav,nav.scrolled{padding:.9rem 2rem}
+  .nav-phone{display:none}
+  #hero{grid-template-columns:1fr 1fr}
+  #sobre,#features,#how,#team,#servicos,#reviews,#faq,#reservas,#cta-final{padding:5.5rem 2rem}
+  .team-grid{grid-template-columns:repeat(4,1fr);gap:.9rem}
+  .reviews-grid{grid-template-columns:1fr 1fr;gap:1.1rem}
+}
+
+/* ════════════════════════════════
+   MOBILE ≤768px
+════════════════════════════════ */
+@media(max-width:768px){
+  :root{--mp:1.25rem;--ms:3.2rem;--mr:5px}
+  html{-webkit-text-size-adjust:100%}
+  body{overflow-x:hidden}
+  img,video,iframe{max-width:100%}
+
+  nav{padding:.9rem var(--mp);background:rgba(242,237,228,.97);border-bottom:1px solid var(--rule);backdrop-filter:blur(18px)}
+  nav.scrolled{padding:.8rem var(--mp);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+  .nav-center,.nav-phone{display:none}
+  .nav-right{gap:.5rem}
+  .nav-logo{font-size:1.25rem}
+  .btn-nav{font-size:.6rem;padding:.5rem 1rem;letter-spacing:.07em}
+
+  .mob-menu-bar{position:sticky;top:50px;z-index:490;background:rgba(242,237,228,.97);border-bottom:1px solid var(--rule);overflow-x:scroll;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .mob-menu-bar::-webkit-scrollbar{display:none}
+  .mob-menu-inner{display:flex;white-space:nowrap;width:max-content;min-width:100%}
+  .mob-menu-inner a{
+    font-family:var(--font-m);
+    font-size:.62rem;
+    letter-spacing:.18em;
+    text-transform:uppercase;
+    color:var(--ink);
+    font-weight:600;
+    padding:.8rem 1.4rem;
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    border-right:1px solid var(--rule);
+    text-decoration:none;
+    flex-shrink:0;
+    -webkit-tap-highlight-color:transparent;
+    transition:color .2s,background .2s;
+    position:relative;
+  }
+  .mob-menu-inner a::after{
+    content:'';
+    position:absolute;
+    bottom:0;left:50%;right:50%;
+    height:2px;
+    background:var(--red);
+    transition:left .25s,right .25s;
+  }
+  .mob-menu-inner a:hover::after,
+  .mob-menu-inner a:active::after{left:0;right:0}
+  .mob-menu-inner a:last-child{border-right:none}
+  .mob-menu-inner a:hover,
+  .mob-menu-inner a:active{color:var(--red);background:rgba(184,24,24,.04)}
+
+  #hero{grid-template-columns:1fr;min-height:100svh;position:relative}
+  .hero-left{display:none}
+  .hero-right{position:relative;min-height:100svh;grid-column:1;background:var(--navy)}
+  .hero-right-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 25%}
+  .hero-overlay{background:linear-gradient(180deg,rgba(11,26,82,.1) 0%,rgba(10,8,5,.3) 45%,rgba(10,8,5,.88) 100%)}
+  .hero-right::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--navy),var(--red));z-index:3}
+  .hero-stats{display:none}
+  .mob-hero-content{position:absolute;bottom:0;left:0;right:0;padding:1.8rem var(--mp) 2rem;z-index:2}
+  .mob-hero-tag{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:3px;padding:.3rem .8rem;margin-bottom:1rem;backdrop-filter:blur(6px)}
+  .mob-hero-dot{width:5px;height:5px;border-radius:50%;background:var(--red);animation:pulse 2s ease infinite}
+  .mob-hero-tag-text{font-family:var(--font-m);font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.8)}
+  .mob-hero-h1{font-family:var(--font-h);font-weight:900;font-size:clamp(2.4rem,10vw,3.4rem);line-height:.95;letter-spacing:-.03em;color:#fff;margin-bottom:.9rem}
+  .mob-hero-h1 .mn{color:rgba(140,178,245,.9)}
+  .mob-hero-h1 .mr{color:rgba(232,112,112,.9);font-style:italic}
+  .mob-hero-sub{font-family:var(--font-b);font-size:.85rem;line-height:1.65;color:rgba(255,255,255,.62);margin-bottom:1.3rem;font-weight:300;max-width:300px}
+  .mob-hero-btns{display:flex;gap:.6rem;margin-bottom:1.3rem}
+  .mob-btn-primary{font-family:var(--font-h);font-weight:700;font-size:.68rem;letter-spacing:.06em;padding:.8rem 1.6rem;background:var(--red);color:#fff;border-radius:var(--mr);display:inline-flex;align-items:center;-webkit-tap-highlight-color:transparent;box-shadow:0 3px 16px rgba(184,24,24,.35);min-height:44px}
+  .mob-btn-secondary{font-family:var(--font-h);font-weight:500;font-size:.68rem;letter-spacing:.06em;padding:.8rem 1.3rem;border:1px solid rgba(255,255,255,.28);color:rgba(255,255,255,.82);border-radius:var(--mr);background:rgba(255,255,255,.07);backdrop-filter:blur(6px);display:inline-flex;align-items:center;min-height:44px;-webkit-tap-highlight-color:transparent}
+  .mob-hero-stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.1);padding-top:.9rem}
+  .mob-stat{text-align:center}
+  .mob-stat-n{font-family:var(--font-h);font-weight:800;font-size:1.4rem;color:#fff;line-height:1}
+  .mob-stat-l{font-family:var(--font-m);font-size:.48rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.42);margin-top:.2rem}
+
+  .ticker{padding:.65rem 0}
+  .ticker-item{font-size:.78rem;padding:0 1.8rem;letter-spacing:.07em}
+
+  #trust{padding:1.4rem var(--mp);flex-direction:column;align-items:flex-start;gap:.8rem}
+  .trust-divider{display:none}
+  .trust-logos{flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;width:100%;padding-bottom:.2rem;gap:.9rem;scrollbar-width:none}
+  .trust-logos::-webkit-scrollbar{display:none}
+  .trust-logo{font-size:.68rem;opacity:.4;flex-shrink:0}
+  .trust-stars-wrap{margin-left:0}
+  .trust-label{max-width:none;font-size:.52rem}
+  .trust-rating-text{font-size:.52rem}
+
+  #sobre,#features,#how,#team,#servicos,#reviews,#faq,#reservas,#cta-final{padding:var(--ms) var(--mp)}
+  .eyebrow{font-size:.52rem;letter-spacing:.26em;margin-bottom:1rem}
+  .section-h{font-size:clamp(1.9rem,7.5vw,2.6rem);line-height:.98;letter-spacing:-.025em;margin-bottom:1.4rem}
+
+  #sobre{grid-template-columns:1fr}
+  .sobre-img-w{display:block;margin-top:1.8rem;position:relative}
+  .sobre-img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--mr)}
+  .sobre-badge{position:absolute;bottom:1.2rem;left:-.3rem;padding:.75rem 1.1rem}
+  .sobre-badge-t{font-size:.5rem;letter-spacing:.14em}
+  .sobre-p{font-size:.88rem;line-height:1.78;margin-bottom:.9rem}
+  .sobre-quote{padding:1.1rem 1.3rem;margin:1.3rem 0}
+  .sobre-quote p{font-size:1rem;line-height:1.5}
+  .stats-row{margin-top:1.5rem}
+  .stat-c{padding:1.2rem .8rem}
+  .stat-n{font-size:2rem}
+  .stat-n sup{font-size:1rem}
+  .stat-l{font-size:.48rem}
+
+  .feat-header{grid-template-columns:1fr;gap:.8rem;margin-bottom:1.8rem}
+  .feat-note{font-size:.84rem;line-height:1.7}
+  .feat-grid{grid-template-columns:1fr;gap:1px}
+  .feat-card{padding:1.4rem var(--mp)}
+  .feat-icon{width:34px;height:34px;font-size:.95rem;margin-bottom:1.1rem}
+  .feat-title{font-size:.9rem;margin-bottom:.45rem}
+  .feat-desc{font-size:.8rem;line-height:1.68}
+
+  .how-inner{grid-template-columns:1fr;gap:0}
+  .how-visual{display:none}
+  .how-step{padding:1.2rem 0;gap:1.2rem}
+  .how-num{font-size:1.8rem;width:1.8rem}
+  .how-step-title{font-size:.9rem;margin-bottom:.25rem}
+  .how-step-desc{font-size:.8rem;line-height:1.68}
+
+  .team-grid{grid-template-columns:1fr 1fr;gap:.8rem;margin-top:1.5rem}
+  .barber-card{border-radius:var(--mr);overflow:hidden}
+  .barber-img{aspect-ratio:1/1;object-position:center top}
+  .barber-info{padding:.85rem .9rem 1rem}
+  .barber-name{font-size:.95rem;margin-bottom:.1rem}
+  .barber-role{font-size:.5rem;letter-spacing:.14em;margin-bottom:.4rem}
+  .barber-spec{font-size:.74rem;line-height:1.45;margin-bottom:.4rem}
+  .barber-avail{font-size:.5rem}
+  .ig-btn{font-size:.62rem;padding:.38rem .75rem .38rem .5rem;margin-top:.6rem;gap:.4rem}
+  .ig-btn-icon{width:18px;height:18px}
+  .ig-btn-icon svg{width:10px;height:10px}
+  .ig-btn-top{font-size:.4rem}
+  .ig-btn-handle{font-size:.6rem}
+
+  .srv-header{grid-template-columns:1fr;gap:.8rem;padding-bottom:1.8rem}
+  .srv-note{font-size:.82rem;line-height:1.7}
+  .srow-a,.srow-b{grid-template-columns:1fr}
+  .scard{border-right:none;border-bottom:1px solid var(--rule);padding:1.6rem var(--mp)}
+  .scard:last-child{border-bottom:none}
+  .scard:hover{border-left:none;padding-left:var(--mp)}
+  .scard-pop{font-size:.48rem;padding:.18rem .55rem;margin-bottom:1rem}
+  .sc-num{font-size:.48rem;margin-bottom:.8rem}
+  .sc-name{font-size:1.25rem;margin-bottom:.15rem}
+  .sc-sub{font-size:.8rem;margin-bottom:.75rem}
+  .sc-desc{font-size:.8rem;line-height:1.68;margin-bottom:1rem}
+  .sc-pills{gap:.28rem;margin-bottom:1rem}
+  .sc-pill{font-size:.46rem;padding:.16rem .45rem}
+  .sc-footer{padding-top:1rem}
+  .sc-price{font-size:1.6rem}
+  .sc-dur{font-size:.48rem}
+
+  .reviews-grid{grid-template-columns:1fr;gap:.9rem;margin-top:1.5rem}
+  .rv-card{padding:1.4rem var(--mp)}
+  .rv-stars{font-size:.78rem;margin-bottom:1rem}
+  .rv-text{font-size:.84rem;line-height:1.72;margin-bottom:1.4rem}
+  .rv-name{font-size:.82rem}
+  .rv-service{font-size:.48rem}
+  .rv-avatar{width:32px;height:32px;font-size:.78rem}
+
+  .faq-inner{grid-template-columns:1fr;gap:1.2rem}
+  .faq-inner>p{font-size:.82rem;line-height:1.7;margin-top:.8rem}
+  .faq-q{font-size:.85rem;padding:1.1rem 0;gap:.8rem}
+  .faq-a{font-size:.8rem;line-height:1.72}
+  .faq-icon{width:19px;height:19px;font-size:.85rem}
+
+  #reservas{padding:var(--ms) var(--mp)}
+  #reservas::before{display:none}
+  .res-inner{grid-template-columns:1fr;gap:2rem}
+  .res-h{font-size:clamp(1.9rem,7.5vw,2.6rem);line-height:.98;letter-spacing:-.025em;margin-bottom:1rem}
+  .res-p{font-size:.82rem;line-height:1.75;margin-bottom:1.8rem}
+  .res-row{padding:.9rem 0;gap:.8rem}
+  .res-row-icon{width:28px;height:28px;font-size:.8rem}
+  .res-label{font-size:.48rem;letter-spacing:.16em}
+  .res-val{font-size:.82rem}
+  .booking-wizard{padding:1.6rem var(--mp);border-radius:var(--mr)}
+  .wiz-title{font-size:1.2rem;margin-bottom:.3rem}
+  .wiz-sub{font-size:.76rem;margin-bottom:1.6rem}
+  .step-bar{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px;margin-bottom:1.5rem}
+  .step-bar::-webkit-scrollbar{display:none}
+  .step-item{font-size:.5rem;letter-spacing:.09em;flex-shrink:0}
+  .step-dot{width:17px;height:17px;font-size:.52rem}
+  .step-line{max-width:1.2rem}
+  .barber-picker{grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+  .barber-opt{padding:.8rem .85rem}
+  .bo-name{font-size:.82rem}
+  .bo-spec{font-size:.68rem;line-height:1.4}
+  .bo-avail{font-size:.48rem}
+  .slot-info{padding:.7rem .9rem;font-size:.78rem;margin-bottom:.9rem}
+  .slot-barber-chosen{font-size:.82rem}
+  .fg label{font-size:.5rem;letter-spacing:.16em}
+  .fg input,.fg select{padding:.75rem .9rem;font-size:.88rem;border-radius:var(--mr);min-height:44px}
+  .fg-row{grid-template-columns:1fr 1fr;gap:.6rem}
+  .time-slots{grid-template-columns:repeat(3,1fr);gap:.35rem}
+  .time-slot{font-size:.54rem;padding:.5rem .25rem;min-height:36px}
+  .wiz-confirm{padding:.9rem 1rem;margin-bottom:.9rem}
+  .confirm-row{font-size:.78rem;padding:.45rem 0}
+  .btn-wiz-next,.btn-wiz-back{font-size:.62rem;padding:.8rem 1.1rem;min-height:44px;border-radius:var(--mr)}
+  .btn-wiz-book{font-size:.68rem;padding:.95rem;min-height:48px;border-radius:var(--mr)}
+  .email-note{font-size:.48rem;letter-spacing:.09em;margin-top:.5rem}
+  .success-icon{font-size:2.2rem;margin-bottom:.8rem}
+  .success-h{font-size:1.2rem;margin-bottom:.4rem}
+  .success-p{font-size:.8rem;line-height:1.65}
+  .wiz-btns{gap:.6rem;margin-top:1rem}
+
+  .cta-tag{font-size:.5rem;letter-spacing:.18em;padding:.3rem .9rem;margin-bottom:1rem}
+  .cta-h{font-size:clamp(1.9rem,8vw,2.8rem);line-height:.98;letter-spacing:-.025em}
+  .cta-p{font-size:.85rem;line-height:1.72;margin:1rem auto 1.8rem;max-width:320px}
+  .cta-actions{flex-direction:column;align-items:stretch;gap:.65rem}
+  .cta-actions .btn-primary,.cta-actions .btn-secondary{text-align:center;padding:.95rem;min-height:48px;border-radius:var(--mr);justify-content:center}
+
+  footer{padding:3rem var(--mp) 2rem}
+  .ft-top{grid-template-columns:1fr 1fr;gap:1.8rem;padding-bottom:2rem}
+  .ft-top>div:first-child{grid-column:span 2}
+  .ft-logo{font-size:1.5rem;margin-bottom:.4rem}
+  .ft-tagline{font-size:.78rem;line-height:1.68;margin-bottom:1.2rem}
+  .ft-ig-btn{font-size:.7rem;padding:.46rem 1rem .46rem .6rem;gap:.5rem}
+  .ft-ig-btn-icon{width:20px;height:20px}
+  .ft-ig-btn-icon svg{width:11px;height:11px}
+  .ft-ig-btn-top{font-size:.42rem}
+  .ft-ig-btn-handle{font-size:.7rem}
+  .ft-col-h{font-size:.52rem;letter-spacing:.17em;margin-bottom:1rem}
+  .ft-links a{font-size:.78rem}
+  .ft-bottom{flex-direction:column;align-items:flex-start;gap:.6rem;padding-top:1.4rem}
+  .ft-copy,.ft-bot a{font-size:.5rem}
+  .ft-bot{gap:1.2rem}
+  .reveal{transition:opacity .65s var(--ease),transform .65s var(--ease)}
+
+  #sobre{padding:0}
+  .sobre-left-pad{padding:var(--ms) var(--mp)}
+  .sobre-img-w{min-height:260px}
+  .sobre-img{min-height:260px;height:100%}
+  #how{padding:0}
+  .how-visual{min-height:260px}
+
+  /* Mobile integrated image gradients */
+  .sobre-img-w{position:relative}
+  .sobre-img-w::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom,var(--bg) 0%,transparent 14%,transparent 78%,var(--bg) 100%);
+    pointer-events:none;z-index:1;
+  }
+  .barber-img{
+    -webkit-mask-image:linear-gradient(to bottom,black 65%,transparent 100%);
+    mask-image:linear-gradient(to bottom,black 65%,transparent 100%);
+  }
+  .eb-img::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom,var(--bg-warm) 0%,transparent 12%,transparent 85%,var(--bg-warm) 100%);
+    pointer-events:none;z-index:1;
+  }
+
+}
+
+/* ≤390px */
+@media(max-width:390px){
+  :root{--mp:1.1rem;--ms:2.8rem}
+  .mob-hero-h1{font-size:2.3rem}
+  .team-grid{gap:.6rem}
+  .barber-picker{grid-template-columns:1fr}
+  .fg-row{grid-template-columns:1fr}
+  .section-h,.res-h,.cta-h{font-size:1.9rem}
+}
+
+/* Desktop only */
+@media(min-width:769px){
+  .mob-menu-bar{display:none}
+  .mob-hero-content{display:none}
+}
+
+/* ── ADDRESS BAR ── */
+#address-bar{
+  background:var(--navy);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+#address-bar-link{
+  display:flex;align-items:center;justify-content:center;gap:.8rem;
+  padding:.75rem 2rem;
+  text-decoration:none;
+  color:rgba(255,255,255,.75);
+  font-family:var(--font-m);font-size:.62rem;letter-spacing:.16em;
+  text-transform:uppercase;
+  transition:background .2s,color .2s;
+}
+#address-bar-link:hover{background:rgba(255,255,255,.06);color:#fff}
+.ab-icon{font-size:.9rem;flex-shrink:0}
+.ab-text{line-height:1}
+.ab-text strong{color:#fff;font-weight:600}
+.ab-arrow{
+  font-size:.9rem;color:var(--red);
+  transition:transform .2s;
+  flex-shrink:0;
+}
+#address-bar-link:hover .ab-arrow{transform:translateX(4px)}
+@media(max-width:768px){
+  #address-bar-link{padding:.65rem var(--mp);font-size:.56rem;letter-spacing:.13em;gap:.6rem}
+  .ab-text{font-size:.56rem}
+}
+
+
+/* ── HAMBURGER (mobile only) ── */
+.mob-hamburger{
+  display:none;
+  flex-direction:column;justify-content:center;
+  gap:5px;width:36px;height:36px;
+  background:none;border:none;cursor:pointer;
+  padding:5px;position:relative;z-index:600;
+  flex-shrink:0;
+}
+.mob-hamburger span{
+  display:block;width:20px;height:1.5px;
+  background:var(--ink);
+  transition:all .3s var(--ease);
+}
+.mob-hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.mob-hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.mob-hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+
+/* ── HORIZONTAL SCROLL NAV (Hazel & Honey style) ── */
+.mob-menu-bar{
+  position:sticky;top:50px;z-index:490;
+  background:rgba(242,237,228,.97);
+  border-bottom:1px solid var(--rule);
+  overflow-x:scroll;overflow-y:hidden;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+  transform:translateY(-100%);
+  opacity:0;
+  transition:transform .38s var(--ease), opacity .3s;
+  pointer-events:none;
+}
+.mob-menu-bar::-webkit-scrollbar{display:none}
+.mob-menu-bar.open{
+  transform:translateY(0);
+  opacity:1;
+  pointer-events:auto;
+}
+.mob-menu-inner{display:flex;white-space:nowrap;width:max-content;min-width:100%}
+.mob-menu-inner a{
+  font-family:var(--font-m);
+  font-size:.62rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink);
+  font-weight:600;
+  padding:.9rem 1.5rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  border-right:1px solid var(--rule);
+  text-decoration:none;
+  flex-shrink:0;
+  -webkit-tap-highlight-color:transparent;
+  transition:color .2s,background .2s;
+  position:relative;
+}
+.mob-menu-inner a::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:50%;right:50%;
+  height:2px;
+  background:var(--red);
+  transition:left .25s,right .25s;
+}
+.mob-menu-inner a:hover::after,
+.mob-menu-inner a:active::after{left:0;right:0}
+.mob-menu-inner a:last-child{border-right:none}
+.mob-menu-inner a:hover,
+.mob-menu-inner a:active{color:var(--red);background:rgba(184,24,24,.04)}
+
+@media(max-width:768px){
+  .mob-hamburger{display:flex}
+}
+@media(min-width:769px){
+  .mob-hamburger,.mob-menu-bar{display:none!important}
+}
+
+/* ── INTEGRATED IMAGE GRADIENTS (mobile only) ── */
+
+
+.img-strip-item{overflow:hidden;position:relative}
+.img-strip-item img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(15%) contrast(1.05);
+  transition:transform .7s var(--ease),filter .5s;
+}
+.img-strip-item:hover img{
+  transform:scale(1.04);
+  filter:grayscale(0%) contrast(1.05);
+}
+.img-strip-tall{height:100%}
+/* subtle dark overlay on edges */
+.img-strip-item::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(22,18,16,.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+@media(max-width:768px){
+  .img-strip{grid-template-columns:1fr 1fr;height:200px}
+  .img-strip-item:last-child{display:none}
+}
+
+
+/* ── EDITORIAL IMAGE BLOCK ── */
+.editorial-block{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  min-height:480px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.eb-img{overflow:hidden;position:relative;margin:0}
+.eb-img img{
+  width:100%;height:100%;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(12%) contrast(1.04);
+  transition:transform .8s var(--ease);
+}
+.editorial-block:hover .eb-img img{transform:scale(1.03)}
+.eb-text{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:5rem 4rem;
+  background:var(--bg-warm);
+}
+.eb-quote{
+  font-family:var(--font-h);
+  font-style:italic;
+  font-size:clamp(1.3rem,2.2vw,1.8rem);
+  line-height:1.4;
+  color:var(--ink);
+  margin:1.5rem 0;
+  border-left:3px solid var(--red);
+  padding-left:1.5rem;
+}
+.eb-sub{
+  font-size:.9rem;color:var(--ink-3);line-height:1.85;
+  font-family:var(--font-b);font-weight:300;
+}
+@media(max-width:768px){
+  .editorial-block{grid-template-columns:1fr}
+  .eb-img{aspect-ratio:4/3;min-height:220px}
+  .eb-text{padding:2.5rem var(--mp)}
+  .eb-quote{font-size:1.2rem}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-logo">BLKCUT<span>.</span></div>
+  <div class="nav-center">
+    <a href="#sobre">About</a>
+    <a href="#team">Barbers</a>
+    <a href="#servicos">Services</a>
+    <a href="#faq">FAQ</a>
+    <a href="#reservas">Book</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+6470000000" class="nav-phone" style="text-decoration:none">+64 7 000 0000</a>
+    <a href="#reservas" class="btn-nav">Book Now</a>
+    <button class="mob-hamburger" id="mob-hamburger" onclick="openMobDrawer()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE SCROLLABLE MENU BAR -->
+<div class="mob-menu-bar" id="mob-menu-bar">
+  <div class="mob-menu-inner">
+    <a href="#sobre" onclick="closeMobMenu()">About</a>
+    <a href="#team" onclick="closeMobMenu()">Barbers</a>
+    <a href="#servicos" onclick="closeMobMenu()">Services</a>
+    <a href="#reviews" onclick="closeMobMenu()">Reviews</a>
+    <a href="#faq" onclick="closeMobMenu()">FAQ</a>
+    <a href="#reservas" onclick="closeMobMenu()" style="color:var(--red)">Book Now →</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <div class="hero-tag hu1"><span class="hero-tag-dot"></span><span class="hero-tag-text">Open today · 9am–7pm · Tauranga, NZ</span></div>
+    <h1 class="hero-h1 hu2">Sharp<br><span class="navy">looks.</span><br><span class="red-i">Honest</span><br>craft.</h1>
+    <p class="hero-sub hu3">A premium barbershop where precision, character and a proper conversation still matter. Every cut is intentional. Every visit, yours.</p>
+    <div class="hero-ctas hu4">
+      <a href="#reservas" class="btn-primary">Book a Cut</a>
+      <a href="#servicos" class="btn-secondary">View Services</a>
+    </div>
+    <div class="hero-trust hu5">
+      <div class="trust-avatars">
+        <span><img src="https://i.pravatar.cc/32?img=11" alt=""></span>
+        <span><img src="https://i.pravatar.cc/32?img=15" alt=""></span>
+        <span><img src="https://i.pravatar.cc/32?img=8" alt=""></span>
+        <span><img src="https://i.pravatar.cc/32?img=22" alt=""></span>
+      </div>
+      <div class="trust-text"><strong>★★★★★ 4.9 / 5.0</strong><br>Trusted by 5,000+ clients in Tauranga</div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img class="hero-right-img" loading="eager" src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1200&q=90&auto=format&fit=crop" alt="Barber at work">
+    <div class="hero-overlay"></div>
+    <div class="mob-hero-content">
+      <div class="mob-hero-tag"><span class="mob-hero-dot"></span><span class="mob-hero-tag-text">Open today · Tauranga, NZ</span></div>
+      <h1 class="mob-hero-h1">Sharp <span class="mn">looks.</span><br><span class="mr">Honest</span> craft.</h1>
+      <p class="mob-hero-sub">A premium barbershop where precision and character still matter. Every cut is intentional.</p>
+      <div class="mob-hero-btns">
+        <a href="#reservas" class="mob-btn-primary">Book a Cut</a>
+        <a href="#servicos" class="mob-btn-secondary">Services</a>
+      </div>
+      <div class="mob-hero-stats">
+        <div class="mob-stat"><div class="mob-stat-n">5K+</div><div class="mob-stat-l">Clients</div></div>
+        <div class="mob-stat"><div class="mob-stat-n">4</div><div class="mob-stat-l">Barbers</div></div>
+        <div class="mob-stat"><div class="mob-stat-n">4.9</div><div class="mob-stat-l">Rating</div></div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hs-item"><div class="hs-n">5K+</div><div class="hs-l">Clients / yr</div></div>
+      <div class="hs-item"><div class="hs-n">4</div><div class="hs-l">Barbers</div></div>
+      <div class="hs-item"><div class="hs-n">4.9</div><div class="hs-l">Google rating</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker"><div class="ticker-track">
+  <span class="ticker-item">Precision Fade</span><span class="ticker-item">Premium Beard Work</span><span class="ticker-item">Classic Cuts</span><span class="ticker-item">Hot Towel Shave</span><span class="ticker-item">Tauranga Since 2019</span><span class="ticker-item">4 Expert Barbers</span><span class="ticker-item">Walk-in Welcome</span><span class="ticker-item">Hair Design</span>
+  <span class="ticker-item">Precision Fade</span><span class="ticker-item">Premium Beard Work</span><span class="ticker-item">Classic Cuts</span><span class="ticker-item">Hot Towel Shave</span><span class="ticker-item">Tauranga Since 2019</span><span class="ticker-item">4 Expert Barbers</span><span class="ticker-item">Walk-in Welcome</span><span class="ticker-item">Hair Design</span>
+</div></div>
+
+<!-- TRUST -->
+<div id="trust">
+  <span class="trust-label">As seen in</span>
+  <div class="trust-divider"></div>
+  <div class="trust-logos">
+    <span class="trust-logo">Bay of Plenty Times</span>
+    <span class="trust-logo">Tauranga City Guide</span>
+    <span class="trust-logo">NZ Barber Awards 2023</span>
+    <span class="trust-logo">The Local Barber Mag</span>
+    <span class="trust-logo">Stuff.co.nz</span>
+  </div>
+  <div class="trust-stars-wrap">
+    <span class="trust-stars">★★★★★</span>
+    <div class="trust-rating-text">4.9 rating<br>1,200+ reviews</div>
+  </div>
+</div>
+
+<!-- ADDRESS BANNER -->
+<div id="address-bar">
+  <a href="https://maps.google.com/?q=142+Devonport+Road+Tauranga+New+Zealand" target="_blank" id="address-bar-link">
+    <span class="ab-icon">📍</span>
+    <span class="ab-text">142 Devonport Road, Tauranga — <strong>Get Directions</strong></span>
+    <span class="ab-arrow">→</span>
+  </a>
+</div>
+
+<!-- ABOUT -->
+<section id="sobre">
+  <div class="sobre-left-pad">
+    <div class="eyebrow reveal">About Us</div>
+    <h2 class="section-h reveal">We are<br><em>BLKCUT</em></h2>
+    <div class="reveal">
+      <p class="sobre-p">BLKCUT was built on a simple conviction — that a barbershop can be more than a place to get a trim. It can be a ritual. A space where you walk in carrying the week and leave with your head right.</p>
+      <p class="sobre-p">In the heart of Tauranga, we've brought together the sharpest barbers, the finest techniques and a culture that fuses classic craft with a sharp, modern edge.</p>
+    </div>
+    <blockquote class="sobre-quote reveal"><p>"The right cut changes the way you see yourself. And how the world sees you."</p></blockquote>
+    <div class="stats-row reveal">
+      <div class="stat-c"><div class="stat-n">5K<sup>+</sup></div><div class="stat-l">Clients</div></div>
+      <div class="stat-c"><div class="stat-n">4</div><div class="stat-l">Barbers</div></div>
+      <div class="stat-c"><div class="stat-n">4.9<sup>★</sup></div><div class="stat-l">Rating</div></div>
+    </div>
+  </div>
+  </div>
+  <div class="sobre-img-w reveal">
+    <img class="sobre-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=700&q=85&auto=format&fit=crop" alt="Inside BLKCUT">
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="feat-header">
+    <div>
+      <div class="eyebrow reveal">Why BLKCUT</div>
+      <h2 class="section-h reveal">What sets us <em>apart</em></h2>
+    </div>
+    <p class="feat-note reveal">We obsess over every detail — from the technique behind each cut to the experience of sitting in our chair. Here's what you can always count on.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat-card reveal"><div class="feat-icon">✂️</div><div class="feat-title">Master-level technique</div><p class="feat-desc">All 4 barbers have a minimum of 5 years' experience. No apprentices on your head — ever.</p></div>
+    <div class="feat-card reveal rd1"><div class="feat-icon">🪒</div><div class="feat-title">Premium products only</div><p class="feat-desc">Reuzel, American Crew, Proraso. Nothing cheap on your skin or hair.</p></div>
+    <div class="feat-card reveal rd2"><div class="feat-icon">🕐</div><div class="feat-title">No wait. Ever.</div><p class="feat-desc">Book online and walk straight into your seat. Your time is respected — we run to the minute.</p></div>
+    <div class="feat-card reveal rd3"><div class="feat-icon">💈</div><div class="feat-title">Cut for your head shape</div><p class="feat-desc">We assess your skull shape, hair type and growth patterns before picking up a clipper.</p></div>
+    <div class="feat-card reveal rd1"><div class="feat-icon">🏆</div><div class="feat-title">Award-winning shop</div><p class="feat-desc">NZ Barber Awards 2023 — Best Independent Barbershop in the Bay of Plenty.</p></div>
+    <div class="feat-card reveal rd2"><div class="feat-icon">♻️</div><div class="feat-title">Sustainable & local</div><p class="feat-desc">Biodegradable towels, composted clippings and NZ-sourced products wherever possible.</p></div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-inner" style="gap:0">
+    <div>
+      <div style="padding:7rem 3.5rem"><div class="eyebrow reveal">How It Works</div>
+      <h2 class="section-h reveal">Simple.<br><em>Fast.</em> Sharp.</h2>
+      <div class="how-steps">
+        <div class="how-step reveal"><div class="how-num">01</div><div><div class="how-step-title">Choose your barber</div><p class="how-step-desc">Browse our team and pick who you want — or choose "Any Available" for the next open slot.</p></div></div>
+        <div class="how-step reveal rd1"><div class="how-num">02</div><div><div class="how-step-title">Book your service & time</div><p class="how-step-desc">See your barber's real availability. Pick a service, date and time. Confirmed instantly.</p></div></div>
+        <div class="how-step reveal rd2"><div class="how-num">03</div><div><div class="how-step-title">Walk in & sit down</div><p class="how-step-desc">No waiting room. Your barber is ready when you arrive. Just your seat and a proper conversation.</p></div></div>
+        <div class="how-step reveal rd3"><div class="how-num">04</div><div><div class="how-step-title">Leave looking sharp</div><p class="how-step-desc">Every cut finished with care. You leave styled, satisfied — and already thinking about the next one.</p></div></div>
+      </div>
+    </div></div>
+    <div class="how-visual reveal">
+      <img class="how-img" src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=700&q=85&auto=format&fit=crop" alt="Barber at work">
+      <div class="how-badge-l">To book online</div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- TEAM -->
+<section id="team">
+  <div class="eyebrow reveal">The Team</div>
+  <h2 class="section-h reveal">Meet your <em>barbers</em></h2>
+  <div class="team-grid">
+    <div class="barber-card reveal">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?w=400&q=85&auto=format&fit=crop&crop=faces,top&facepad=2.5" alt="Marcus T.">
+      <div class="barber-info">
+        <div class="barber-name">Marcus T.</div>
+        <div class="barber-role">Senior Barber · 8 yrs</div>
+        <div class="barber-spec">Skin fades, hair design, classic cuts. Known for clean lines.</div>
+        <div class="barber-avail"><span class="dot"></span>Next: <span>Today 2pm</span></div>
+        <a href="https://instagram.com/marcus.tauranganz" target="_blank" class="ig-btn">
+          <div class="ig-btn-bg"></div><div class="ig-btn-bg2"></div>
+          <div class="ig-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div>
+          <div class="ig-btn-label"><span class="ig-btn-top">Instagram</span><span class="ig-btn-handle">@marcus.tauranganz</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="barber-card reveal rd1">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85&auto=format&fit=crop&crop=faces,top&facepad=2.5" alt="Jordan K.">
+      <div class="barber-info">
+        <div class="barber-name">Jordan K.</div>
+        <div class="barber-role">Lead Barber · 6 yrs</div>
+        <div class="barber-spec">Beard sculpting, straight razor, texture cuts.</div>
+        <div class="barber-avail"><span class="dot"></span>Next: <span>Tomorrow 10am</span></div>
+        <a href="https://instagram.com/jordan.cuts.nz" target="_blank" class="ig-btn">
+          <div class="ig-btn-bg"></div><div class="ig-btn-bg2"></div>
+          <div class="ig-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div>
+          <div class="ig-btn-label"><span class="ig-btn-top">Instagram</span><span class="ig-btn-handle">@jordan.cuts.nz</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="barber-card reveal rd2">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=85&auto=format&fit=crop&crop=faces&facepad=4" alt="Levi O.">
+      <div class="barber-info">
+        <div class="barber-name">Levi O.</div>
+        <div class="barber-role">Barber · 5 yrs</div>
+        <div class="barber-spec">Mid fades, scissor work, kids' cuts.</div>
+        <div class="barber-avail"><span class="dot"></span>Next: <span>Today 4pm</span></div>
+        <a href="https://instagram.com/levi.barber.nz" target="_blank" class="ig-btn">
+          <div class="ig-btn-bg"></div><div class="ig-btn-bg2"></div>
+          <div class="ig-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div>
+          <div class="ig-btn-label"><span class="ig-btn-top">Instagram</span><span class="ig-btn-handle">@levi.barber.nz</span></div>
+        </a>
+      </div>
+    </div>
+    <div class="barber-card reveal rd3">
+      <img class="barber-img" src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=400&q=85&auto=format&fit=crop&crop=faces,top&facepad=2.5" alt="Sam R.">
+      <div class="barber-info">
+        <div class="barber-name">Sam R.</div>
+        <div class="barber-role">Barber · 5 yrs</div>
+        <div class="barber-spec">Classic cuts, hot towel, senior sessions.</div>
+        <div class="barber-avail"><span class="dot"></span>Next: <span>Today 3pm</span></div>
+        <a href="https://instagram.com/samr.tauranga" target="_blank" class="ig-btn">
+          <div class="ig-btn-bg"></div><div class="ig-btn-bg2"></div>
+          <div class="ig-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div>
+          <div class="ig-btn-label"><span class="ig-btn-top">Instagram</span><span class="ig-btn-handle">@samr.tauranga</span></div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="srv-header">
+    <div>
+      <div class="eyebrow reveal">Services</div>
+      <h2 class="section-h reveal">The <em>Menu</em></h2>
+    </div>
+    <p class="srv-note reveal">No upselling. No packages built around profit. Just real technique, premium products and time spent on the finish — by barbers who care about the result.</p>
+  </div>
+  <div>
+    <div class="srow srow-a">
+      <div class="scard scard-navy reveal">
+        <div class="scard-pop">★ Most Booked</div>
+        <div class="sc-num">01</div><div class="sc-name">The Works</div><div class="sc-sub">Fade & Beard</div>
+        <p class="sc-desc">Our signature. A skin or mid fade tailored to your head shape, paired with a full beard line-up, sculpt and hot towel finish.</p>
+        <div class="sc-pills"><span class="sc-pill">Skin or mid fade</span><span class="sc-pill">Beard sculpt</span><span class="sc-pill">Hot towel</span><span class="sc-pill">Tonic & styling</span></div>
+        <div class="sc-footer"><div class="sc-dur">~55 min</div><div class="sc-price">$85</div></div>
+      </div>
+      <div class="scard reveal">
+        <div class="sc-num">02</div><div class="sc-name">Clean Slate</div><div class="sc-sub">Classic Cut</div>
+        <p class="sc-desc">Scissor or clipper work shaped to your hair type. Clean neckline, styled out the door. No frills — just a proper cut, done well.</p>
+        <div class="sc-pills"><span class="sc-pill">Scissor or clipper</span><span class="sc-pill">Neckline</span><span class="sc-pill">Blow-dry & finish</span></div>
+        <div class="sc-footer"><div class="sc-dur">~35 min</div><div class="sc-price">$55</div></div>
+      </div>
+    </div>
+    <div class="srow srow-b">
+      <div class="scard reveal"><div class="sc-num">03</div><div class="sc-name">Edge Up</div><div class="sc-sub">Beard Only</div><p class="sc-desc">Come in with growth, leave with shape. Jaw, cheekbones and neck — finished with straight razor edges and a warm towel.</p><div class="sc-pills"><span class="sc-pill">Full beard sculpt</span><span class="sc-pill">Razor edges</span><span class="sc-pill">Warm towel</span></div><div class="sc-footer"><div class="sc-dur">~30 min</div><div class="sc-price">$40</div></div></div>
+      <div class="scard reveal rd1"><div class="sc-num">04</div><div class="sc-name">The Ritual</div><div class="sc-sub">Hot Towel Shave</div><p class="sc-desc">Pre-shave oil, hot lather, straight razor — twice. Slow and deliberate. The closest shave you'll get anywhere in Tauranga.</p><div class="sc-pills"><span class="sc-pill">Pre-shave oil</span><span class="sc-pill">Double-pass razor</span><span class="sc-pill">Cold finish & balm</span></div><div class="sc-footer"><div class="sc-dur">~45 min</div><div class="sc-price">$65</div></div></div>
+      <div class="scard reveal rd2"><div class="sc-num">05</div><div class="sc-name">Next Level</div><div class="sc-sub">Hair Design</div><p class="sc-desc">Geometric lines, patterns, portraits — freehand with a detailer. Consultation required. Priced on complexity.</p><div class="sc-pills"><span class="sc-pill">Freehand detailer</span><span class="sc-pill">Design consult</span><span class="sc-pill">Base fade included</span></div><div class="sc-footer"><div class="sc-dur">~60 min+</div><div class="sc-price">from $95</div></div></div>
+    </div>
+    <div class="srow srow-b">
+      <div class="scard reveal"><div class="sc-num">06</div><div class="sc-name">Young Ones</div><div class="sc-sub">Under 12s</div><p class="sc-desc">Patient barbers, zero fuss. Clipper or scissor shaped for their age. First cuts always welcome.</p><div class="sc-pills"><span class="sc-pill">Clipper or scissor</span><span class="sc-pill">Styled & finished</span></div><div class="sc-footer"><div class="sc-dur">~25 min</div><div class="sc-price">$35</div></div></div>
+      <div class="scard reveal rd1"><div class="sc-num">07</div><div class="sc-name">Senior Cut</div><div class="sc-sub">65 & Over</div><p class="sc-desc">A proper cut at a fair price. No shortcuts on quality — just acknowledgement that some things should still cost what they cost.</p><div class="sc-pills"><span class="sc-pill">Full cut & style</span><span class="sc-pill">Neckline & ears</span></div><div class="sc-footer"><div class="sc-dur">~35 min</div><div class="sc-price">$45</div></div></div>
+      <div class="scard scard-navy reveal rd2"><div class="sc-num">08</div><div class="sc-name">The BLKCUT<br>Session</div><div class="sc-sub">Full Experience</div><p class="sc-desc">Cut, beard, brow clean-up, scalp massage, hot towel and a complimentary drink. Two hours. Leave looking sharp.</p><div class="sc-pills"><span class="sc-pill">Full cut & beard</span><span class="sc-pill">Brow shape</span><span class="sc-pill">Scalp massage</span><span class="sc-pill">Drink included</span></div><div class="sc-footer"><div class="sc-dur">~2 hrs</div><div class="sc-price">$130</div></div></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- EDITORIAL IMAGE BLOCK -->
+<div class="editorial-block">
+  <div class="eb-img">
+    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=800&q=85&auto=format&fit=crop" alt="Barber precision work">
+  </div>
+  <div class="eb-text">
+    <div class="eyebrow">The craft</div>
+    <blockquote class="eb-quote">"Precision isn't just technique — it's respect for the person sitting in the chair."</blockquote>
+    <p class="eb-sub">Every barber at BLKCUT has spent years refining their craft. No shortcuts. No guesswork. Just work done properly, every single time.</p>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="eyebrow reveal">Testimonials</div>
+  <h2 class="section-h reveal">What clients <em>say</em></h2>
+  <div class="reviews-grid">
+    <div class="rv-card reveal"><div class="rv-stars">★★★★★</div><p class="rv-text">"Best barbershop I've been to in New Zealand, full stop. The fade was immaculate and my barber actually listened to what I wanted. Been back every 3 weeks since."</p><div class="rv-author"><div class="rv-avatar">JM</div><div><div class="rv-name">James M.</div><div class="rv-service">The Works · Regular client</div></div></div></div>
+    <div class="rv-card reveal rd1"><div class="rv-stars">★★★★★</div><p class="rv-text">"The Ritual hot towel shave was genuinely one of the best grooming experiences I've had. Took 45 minutes, felt like an hour — in the best way. Completely worth $65."</p><div class="rv-author"><div class="rv-avatar">DK</div><div><div class="rv-name">Daniel K.</div><div class="rv-service">The Ritual · First visit</div></div></div></div>
+    <div class="rv-card reveal rd2"><div class="rv-stars">★★★★★</div><p class="rv-text">"Took my 7-year-old for his first proper haircut. The barber was patient, made him laugh and the result was brilliant. He didn't want to leave. Neither did I, honestly."</p><div class="rv-author"><div class="rv-avatar">SL</div><div><div class="rv-name">Sarah L.</div><div class="rv-service">Young Ones · Parent</div></div></div></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-inner">
+    <div>
+      <div class="eyebrow reveal">FAQ</div>
+      <h2 class="section-h reveal">Got <em>questions?</em></h2>
+      <p style="font-size:.88rem;color:var(--ink-3);line-height:1.82;margin-top:.9rem" class="reveal">Everything you need before your first visit — or your hundredth.</p>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do I need to book in advance?<span class="faq-icon">+</span></div><div class="faq-a">We strongly recommend booking online — it takes 2 minutes and guarantees your spot with your chosen barber. Walk-ins are welcome when space allows, but we can't promise availability, especially on weekends.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I choose the right service?<span class="faq-icon">+</span></div><div class="faq-a">If you're unsure, book a Clean Slate (Classic Cut) and chat to your barber when you arrive. They'll advise on whether a fade, beard work or design would suit you — no pressure, no upsell.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I request a specific barber?<span class="faq-icon">+</span></div><div class="faq-a">Yes — you choose your barber as the first step when booking. You can see each barber's speciality and next available slot before selecting. Or choose "Any Available" for the first open slot.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What if I need to cancel or reschedule?<span class="faq-icon">+</span></div><div class="faq-a">We ask for 4 hours' notice so we can offer your slot to someone else. No penalties for genuine emergencies — just give us a call or reply to your confirmation email.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Does the barber get notified of my booking?<span class="faq-icon">+</span></div><div class="faq-a">Yes. When you confirm a booking, your chosen barber receives an automatic email notification with your name, service, and time. You'll also receive a confirmation email.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you do kids' cuts?<span class="faq-icon">+</span></div><div class="faq-a">Absolutely. Our Young Ones service is designed for under-12s and handled by barbers who are used to working with children. First cuts are always welcome.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What payment methods do you accept?<span class="faq-icon">+</span></div><div class="faq-a">We accept all major credit and debit cards, EFTPOS and cash. Contactless preferred but not required.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How long does a typical visit take?<span class="faq-icon">+</span></div><div class="faq-a">Service times are listed on the menu. A Classic Cut is around 35 minutes; The Works around 55. The BLKCUT Session takes 2 hours. We always finish properly — we won't rush you out.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is parking available?<span class="faq-icon">+</span></div><div class="faq-a">Yes — there's a public car park directly behind 142 Devonport Road with 2 hours free. Street parking is also available on Devonport Road itself.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section id="reservas">
+  <div class="res-inner">
+    <div>
+      <div class="res-ey">Bookings</div>
+      <h2 class="res-h reveal">Book<br>your<br><em>cut</em></h2>
+      <p class="res-p reveal">Choose your barber, pick your time, confirm. Your barber gets notified automatically — no waiting, no guesswork.</p>
+      <div class="res-info reveal">
+        <div class="res-row"><div class="res-row-icon">📍</div><div><div class="res-label">Address</div><a href="https://maps.google.com/?q=142+Devonport+Road+Tauranga+New+Zealand" target="_blank" style="color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)">142 Devonport Road, Tauranga</a></div></div>
+        <div class="res-row"><div class="res-row-icon">🕐</div><div><div class="res-label">Hours</div><div class="res-val">Mon–Fri 9am–7pm · Sat 9am–5pm</div></div></div>
+        <div class="res-row"><div class="res-row-icon">📞</div><div><div class="res-label">Phone</div><a href="tel:+6470000000" style="color:rgba(255,255,255,.65);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2)">+64 7 000 0000</a></div></div>
+        <div class="res-row"><div class="res-row-icon">✉️</div><div><div class="res-label">Email</div><span onclick="copyEmail(event)" style="color:rgba(255,255,255,.65);cursor:pointer;border-bottom:1px solid rgba(255,255,255,.2)" title="Click to copy email">hello@blkcut.nz</span></div></div>
+      </div>
+    </div>
+    <div class="booking-wizard reveal" id="booking-wizard">
+      <div class="wiz-title">Reserve a Session</div>
+      <p class="wiz-sub">Your barber receives an email confirmation automatically.</p>
+      <div class="step-bar" id="step-bar">
+        <div class="step-item active" id="si-1"><span class="step-dot">1</span>Barber</div><div class="step-line"></div>
+        <div class="step-item" id="si-2"><span class="step-dot">2</span>Service</div><div class="step-line"></div>
+        <div class="step-item" id="si-3"><span class="step-dot">3</span>Date & Time</div><div class="step-line"></div>
+        <div class="step-item" id="si-4"><span class="step-dot">4</span>Your Details</div><div class="step-line"></div>
+        <div class="step-item" id="si-5"><span class="step-dot">5</span>Confirm</div>
+      </div>
+      <div class="wiz-step active" id="step-1">
+        <p style="font-size:.78rem;color:var(--ink-3);margin-bottom:1rem;line-height:1.6">Who would you like to book with?</p>
+        <div class="barber-picker">
+          <div class="barber-opt" onclick="selectBarber(this,'any','Any Available')"><div class="bo-name">Any Available</div><div class="bo-spec">First open slot across the team</div><div class="bo-avail"><span class="dot"></span>Multiple slots open today</div></div>
+          <div class="barber-opt" onclick="selectBarber(this,'marcus','Marcus T.')"><div class="bo-name">Marcus T.</div><div class="bo-spec">Fades, hair design, classic cuts</div><div class="bo-avail"><span class="dot"></span>Next: Today 2pm</div></div>
+          <div class="barber-opt" onclick="selectBarber(this,'jordan','Jordan K.')"><div class="bo-name">Jordan K.</div><div class="bo-spec">Beard sculpting, straight razor</div><div class="bo-avail"><span class="dot"></span>Next: Tomorrow 10am</div></div>
+          <div class="barber-opt" onclick="selectBarber(this,'levi','Levi O.')"><div class="bo-name">Levi O.</div><div class="bo-spec">Mid fades, scissor, kids' cuts</div><div class="bo-avail"><span class="dot"></span>Next: Today 4pm</div></div>
+          <div class="barber-opt" onclick="selectBarber(this,'sam','Sam R.')"><div class="bo-name">Sam R.</div><div class="bo-spec">Classic cuts, hot towel, VIP</div><div class="bo-avail"><span class="dot"></span>Next: Today 3pm</div></div>
+        </div>
+        <div class="wiz-btns"><button class="btn-wiz-next" onclick="goStep(2)">Continue →</button></div>
+      </div>
+      <div class="wiz-step" id="step-2">
+        <div class="slot-info visible" id="barber-banner"><div class="slot-barber-chosen" id="chosen-barber-name">Booking with: —</div><div class="slot-hint">Select the service you'd like.</div></div>
+        <div class="fg"><label>Service</label>
+          <select id="svc-select" onchange="updateSvc()">
+            <option value="">Choose a service</option>
+            <option value="The Works (Fade &amp; Beard) — $85 · ~55 min">The Works (Fade & Beard) — $85 · ~55 min</option>
+            <option value="Clean Slate (Classic Cut) — $55 · ~35 min">Clean Slate (Classic Cut) — $55 · ~35 min</option>
+            <option value="Edge Up (Beard Only) — $40 · ~30 min">Edge Up (Beard Only) — $40 · ~30 min</option>
+            <option value="The Ritual (Hot Towel Shave) — $65 · ~45 min">The Ritual (Hot Towel Shave) — $65 · ~45 min</option>
+            <option value="Next Level (Hair Design) — from $95 · ~60 min+">Next Level (Hair Design) — from $95 · ~60 min+</option>
+            <option value="Young Ones (Under 12) — $35 · ~25 min">Young Ones (Under 12) — $35 · ~25 min</option>
+            <option value="Senior Cut (65+) — $45 · ~35 min">Senior Cut (65+) — $45 · ~35 min</option>
+            <option value="The BLKCUT Session (Full) — $130 · ~2 hrs">The BLKCUT Session (Full) — $130 · ~2 hrs</option>
+          </select>
+        </div>
+        <div class="wiz-btns"><button class="btn-wiz-back" onclick="goStep(1)">← Back</button><button class="btn-wiz-next" onclick="goStep(3)">Continue →</button></div>
+      </div>
+      <div class="wiz-step" id="step-3">
+        <div class="slot-info visible"><div class="slot-barber-chosen" id="step3-summary">—</div><div class="slot-hint">Showing availability for your chosen barber.</div></div>
+        <div class="fg-row">
+          <div class="fg"><label>Date</label><input type="date" id="date-input" oninput="updateSlots()"></div>
+          <div class="fg"><label>Time</label><div class="time-slots" id="time-slots-grid"><div style="grid-column:span 4;font-size:.76rem;color:var(--ink-4);padding:.4rem 0">Pick a date to see available slots.</div></div></div>
+        </div>
+        <div class="wiz-btns"><button class="btn-wiz-back" onclick="goStep(2)">← Back</button><button class="btn-wiz-next" onclick="goStep(4)">Continue →</button></div>
+      </div>
+      <div class="wiz-step" id="step-4">
+        <div class="fg-row">
+          <div class="fg"><label>First Name</label><input type="text" id="fname" placeholder="Your name"></div>
+          <div class="fg"><label>Last Name</label><input type="text" id="lname" placeholder="Surname"></div>
+        </div>
+        <div class="fg"><label>Phone</label><input type="tel" id="phone" placeholder="+64 000 000 000"></div>
+        <div class="fg"><label>Email (for confirmation)</label><input type="email" id="email" placeholder="your@email.com"></div>
+        <div class="fg"><label>Notes (optional)</label><input type="text" id="notes" placeholder="Anything your barber should know"></div>
+        <div class="wiz-btns"><button class="btn-wiz-back" onclick="goStep(3)">← Back</button><button class="btn-wiz-next" onclick="goStep(5)">Review Booking →</button></div>
+      </div>
+      <div class="wiz-step" id="step-5">
+        <div class="wiz-confirm" id="confirm-summary"></div>
+        <p style="font-size:.74rem;color:var(--ink-3);line-height:1.7;margin-bottom:.9rem">By confirming, you agree to our 4-hour cancellation policy. Your barber will receive an email with your booking details.</p>
+        <button class="btn-wiz-book" onclick="confirmBooking()">Confirm & Notify Barber</button>
+        <p class="email-note">📧 Confirmation sent to your email · 📱 Your barber notified instantly</p>
+        <div class="wiz-btns" style="margin-top:.5rem"><button class="btn-wiz-back" onclick="goStep(4)">← Edit Details</button></div>
+      </div>
+      <div class="success-msg" id="success-msg">
+        <div class="success-icon">✅</div>
+        <div class="success-h">Booking Confirmed!</div>
+        <p class="success-p">Your barber has been notified and a confirmation has been sent to your email. See you soon at BLKCUT.</p>
+        <p style="margin-top:.9rem;font-family:var(--font-m);font-size:.56rem;letter-spacing:.15em;color:var(--ink-4)">142 DEVONPORT ROAD · TAURANGA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta-final">
+  <div class="cta-tag"><span class="cta-tag-text">Ready when you are</span></div>
+  <h2 class="cta-h reveal">Ready to look<br><em>your best?</em></h2>
+  <p class="cta-p reveal">Book in under 2 minutes. Choose your barber. Get confirmed instantly.</p>
+  <div class="cta-actions reveal">
+    <a href="#reservas" class="btn-primary">Book a Cut Now</a>
+    <a href="tel:+6470000000" class="btn-secondary">Call Us</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-top">
+    <div>
+      <div class="ft-logo">BLKCUT<span>.</span></div>
+      <div style="font-family:var(--font-m);font-size:.52rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:.7rem">Est. Tauranga, NZ · 2019</div>
+      <p class="ft-tagline">Premium barbershop in the heart of Tauranga. Where precision meets character, since 2019.</p>
+      <a href="https://instagram.com/blkcut.tauranga" target="_blank" class="ft-ig-btn">
+        <div class="ft-ig-btn-bg"></div><div class="ft-ig-btn-bg2"></div>
+        <div class="ft-ig-btn-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></div>
+        <div class="ft-ig-btn-label"><span class="ft-ig-btn-top">Follow us on Instagram</span><span class="ft-ig-btn-handle">@blkcut.tauranga</span></div>
+      </a>
+    </div>
+    <div>
+      <div class="ft-col-h">Services</div>
+      <div class="ft-links"><a href="#servicos">The Works</a><a href="#servicos">Clean Slate</a><a href="#servicos">The Ritual</a><a href="#servicos">Hair Design</a><a href="#servicos">The BLKCUT Session</a></div>
+    </div>
+    <div>
+      <div class="ft-col-h">Company</div>
+      <div class="ft-links"><a href="#sobre">About Us</a><a href="#team">The Team</a></div>
+    </div>
+    <div>
+      <div class="ft-col-h">Contact</div>
+      <div class="ft-links"><a href="https://maps.google.com/?q=142+Devonport+Road+Tauranga+New+Zealand" target="_blank">142 Devonport Road</a><a href="tel:+6470000000">+64 7 000 0000</a><a href="#" onclick="copyEmail(event)" title="Click to copy email">hello@blkcut.nz</a></div>
+    </div>
+  </div>
+  <div class="ft-bottom">
+    <span class="ft-copy">© 2025 <em>BLKCUT</em> Barbershop · All rights reserved</span>
+    <div class="ft-bot"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('main-nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible') });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+
+
+// ── MOBILE HORIZONTAL MENU ──────────────────────────────────────
+function openMobDrawer(){
+  const bar = document.getElementById('mob-menu-bar');
+  const btn = document.getElementById('mob-hamburger');
+  const isOpen = bar.classList.contains('open');
+  if(isOpen){ closeMobMenu(); return; }
+  bar.classList.add('open');
+  btn.classList.add('open');
+}
+function closeMobMenu(){
+  document.getElementById('mob-menu-bar').classList.remove('open');
+  document.getElementById('mob-hamburger').classList.remove('open');
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMobMenu()});
+// Close menu when scrolling down past it
+window.addEventListener('scroll',()=>{ if(window.scrollY>120) closeMobMenu(); },{passive:true});
+
+function copyEmail(e) {
+  e.preventDefault();
+  navigator.clipboard.writeText('hello@blkcut.nz').then(() => {
+    const toast = document.createElement('div');
+    toast.textContent = '✓ Email copied to clipboard';
+    toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:#161210;color:#fff;font-family:monospace;font-size:.7rem;letter-spacing:.12em;padding:.75rem 1.5rem;border-radius:4px;z-index:9999;opacity:0;transition:opacity .3s';
+    document.body.appendChild(toast);
+    setTimeout(() => toast.style.opacity='1', 10);
+    setTimeout(() => { toast.style.opacity='0'; setTimeout(() => toast.remove(), 300); }, 2500);
+  }).catch(() => { window.location.href='mailto:hello@blkcut.nz'; });
+}
+
+function toggleFaq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+const state = { barber:'', barberLabel:'', service:'', date:'', time:'', fname:'', lname:'', phone:'', email:'', notes:'' };
+const schedules = { any:{taken:['9:00am','11:00am']}, marcus:{taken:['10:00am','3:00pm','5:00pm']}, jordan:{taken:['9:00am','2:00pm','4:00pm','6:00pm']}, levi:{taken:['11:00am','1:00pm']}, sam:{taken:['9:00am','10:00am','5:00pm','6:00pm']} };
+const allSlots = ['9:00am','10:00am','11:00am','12:00pm','1:00pm','2:00pm','3:00pm','4:00pm','5:00pm','6:00pm'];
+function selectBarber(el, key, label) {
+  document.querySelectorAll('.barber-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected'); state.barber = key; state.barberLabel = label;
+}
+function updateSvc() { state.service = document.getElementById('svc-select').value; }
+function updateSlots() {
+  const d = document.getElementById('date-input').value;
+  if (!d) return;
+  state.date = d;
+  const taken = (schedules[state.barber] || schedules.any).taken;
+  document.getElementById('time-slots-grid').innerHTML = '';
+  allSlots.forEach(slot => {
+    const isTaken = taken.includes(slot);
+    const div = document.createElement('div');
+    div.className = 'time-slot' + (isTaken ? ' taken' : '');
+    div.textContent = slot;
+    if (!isTaken) div.onclick = () => { document.querySelectorAll('.time-slot').forEach(s => s.classList.remove('selected')); div.classList.add('selected'); state.time = slot; };
+    document.getElementById('time-slots-grid').appendChild(div);
+  });
+}
+function goStep(n) {
+  if (n === 2 && !state.barber) { alert('Please select a barber.'); return; }
+  if (n === 3 && !state.service) { alert('Please select a service.'); return; }
+  if (n === 4 && (!state.date || !state.time)) { alert('Please pick a date and time slot.'); return; }
+  if (n === 5) {
+    const f=document.getElementById('fname').value, l=document.getElementById('lname').value, p=document.getElementById('phone').value, e=document.getElementById('email').value;
+    if (!f||!l||!p||!e) { alert('Please fill in all required fields.'); return; }
+    state.fname=f; state.lname=l; state.phone=p; state.email=e; state.notes=document.getElementById('notes').value;
+    const rows=[['Barber',state.barberLabel||'Any Available'],['Service',state.service.split('—')[0].trim()],['Price',state.service.includes('—')?state.service.split('—')[1].split('·')[0].trim():'—'],['Date',state.date],['Time',state.time],['Name',state.fname+' '+state.lname],['Phone',state.phone],['Email',state.email]];
+    if(state.notes) rows.push(['Notes',state.notes]);
+    document.getElementById('confirm-summary').innerHTML = rows.map(([l,v]) => `<div class="confirm-row"><span class="confirm-label">${l}</span><span>${v}</span></div>`).join('');
+  }
+  if (n >= 2) {
+    document.getElementById('chosen-barber-name').textContent = 'Booking with: ' + (state.barberLabel || 'Any Available');
+    document.getElementById('step3-summary').textContent = (state.barberLabel || 'Any Available') + ' · ' + (state.service.split('—')[0] || '');
+  }
+  document.querySelectorAll('.wiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-' + n).classList.add('active');
+  for (let i=1;i<=5;i++) { const si=document.getElementById('si-'+i); si.classList.remove('active','done'); if(i<n)si.classList.add('done'); else if(i===n)si.classList.add('active'); }
+}
+
+
+
+function confirmBooking() {
+  document.querySelectorAll('.wiz-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('step-bar').style.display='none';
+  document.querySelector('.wiz-title').style.display='none';
+  document.querySelector('.wiz-sub').style.display='none';
+  document.getElementById('success-msg').classList.add('show');
+}
+</script>
+
+</body>
+</html>
